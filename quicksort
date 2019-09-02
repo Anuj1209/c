@@ -1,0 +1,76 @@
+#include<stdio.h>
+#include<conio.h>
+int count=0;
+void inputarray(int[],int);
+void outputarray(int[],int);
+void quicksort(int[],int,int);
+int partition(int[],int,int);
+void main()
+{
+int a[100],n,p,r;
+clrscr();
+printf("Enter the size of array:");
+scanf("%d",&n);
+inputarray(a,n);
+p=1;
+r=n;
+outputarray(a,n);
+quicksort(a,p,r);
+outputarray(a,n);
+printf("\n Value of counter is %d",count);
+getch();
+}
+void inputarray(int a[],int n)
+{
+	int i;
+	printf("\nEnter the element:");
+
+	for(i=1;i<=n;i++)
+	{
+		scanf("%d",&a[i]);
+	}
+}
+void quicksort(int a[],int p,int r)
+{
+	int q;
+	count++;
+	if(p<r)
+	{
+		q=partition(a,p,r);count++;
+		quicksort(a,p,q-1);
+		quicksort(a,q+1,r);
+	}
+}
+int partition(int a[],int p,int r)
+{
+ int i,j,k,x;
+ x=a[r];count++;
+ i=p-1; count++;
+ for(j=p;j<r;j++)
+ {
+ count++;
+ if(a[j]<=x)
+ {
+ count++;
+ i=i+1; count++;
+ k=a[i]; count++;
+ a[i]=a[j]; count++;
+ a[j]=k; count++;
+ }
+ }
+ k=a[i+1]; count++;
+ a[i+1]=a[r];  count++;
+ a[r]=k;count++;
+ return i+1;
+ }
+
+ void outputarray(int a[],int n)
+ {
+ int i;
+ printf("\nThe shorted array is:");
+ for(i=1;i<=n;i++)
+ {
+ printf("\n %d",a[i]);
+ }
+ }
+ 
